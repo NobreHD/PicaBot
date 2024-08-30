@@ -115,6 +115,8 @@ class PicaBot:
       logger.error(f"Failed to parse message: {msg}")
       return
     
+    await self.emit("raw", message)
+    
     if message.get("t") == "c":
       for part in message["m"]:
         who = part.get("n")
