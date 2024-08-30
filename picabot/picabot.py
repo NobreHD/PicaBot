@@ -119,17 +119,19 @@ class PicaBot:
     
     if message.get("t") == "c":
       for part in message["m"]:
-        who = part.get("n")
+        p_message = PicaMessage(part)
+        who = p_message.user_name
+        message = p_message.message
         if who == self.bot_name:
           continue
         
-        if part["m"].startswith(self.prefix):
-          command_name, *args = self._split_message(part["m"][len(self.prefix):])
+        if message.startswith(self.prefix):
+          command_name, *args = self._split_message(message[len(self.prefix):])
           if command_name in self._commands:
-            await self._commands[command_name](who, *args)
+            await self._commands[command_name](p_message, *args)
             continue
-        
-        await self.emit("message", who, part["m"])
+
+        await self.emit("message", p_message)
   
   async def send(self, message: dict):
     """
@@ -264,3 +266,51 @@ class PicaBot:
       bot_name, 
       server
     )
+    
+class PicaMessage:
+  """ 
+  PicaMessage is a class designed to encapsulate the details of a message received from the WebSocket. 
+  It extracts and provides easy access to various attributes related to the message, the channel it was sent in, and the user who sent it.
+  """
+  def __init__(self, message: dict):
+    self.data = message
+    
+  @property
+  def channel_id(self):
+    return self.data["c"]
+  
+  @property
+  def channel_name(self):
+    return self.data["rn"]
+  
+  @property
+  def channel_color(self):
+    return self.data["rc"]
+  
+  @property
+  def message_timestamp(self):
+    return self.data["a"]
+  
+  @property
+  def message_id(self):
+    return self.data["id"]
+  
+  @property
+  def message(self):
+    return self.data["m"]
+  
+  @property
+  def user_id(self):
+    return self.data["u"]
+  
+  @property
+  def user_name(self):
+    return self.data["n"]
+  
+  @property
+  def user_color(self):
+    return self.data["k"]
+  
+  @property
+  def user_profile_pic(self):
+    return self.data["i"]
