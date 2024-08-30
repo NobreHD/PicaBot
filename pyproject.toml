@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "picabot"
+version = "0.1.0"
+authors = [
+  { name = "NobreHD", email = "info@nobrehd.pt" }
+]
+description = "Library designed to ease the creation of bots for Picarto."
+readme = "README.md"
+requires-python = ">=3.6"
+dependencies = [
+  "websockets",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/NobreHD/picabot"
+Issues = "https://github.com/NobreHD/picabot/issues"
