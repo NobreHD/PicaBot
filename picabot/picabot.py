@@ -161,6 +161,23 @@ class PicaBot:
       "type": "chat",
       "message": message
     })
+    
+  async def delete_message(self, message_id: str, channel_id: str):
+    """
+    Deletes a message from a channel. It won't work if the bot isn't moderator.
+
+    Parameters:
+      message_id (str): The ID of the message to delete.
+      channel_id (str): The ID of the channel where the message is located.
+
+    Raises:
+      ConnectionError: If not connected to the WebSocket server.
+    """
+    await self.send({
+      "type": "removeMessage",
+      "messageId": message_id,
+      "channelId": channel_id
+    })
 
   async def close(self):
     """
