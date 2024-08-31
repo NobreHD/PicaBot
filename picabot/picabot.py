@@ -293,41 +293,81 @@ class PicaMessage:
     self.data = message
     
   @property
-  def channel_id(self):
+  def channel_id(self) -> str:
+    """
+    Returns:
+      str: The ID of the channel the message was sent in.
+    """
     return self.data["c"]
   
   @property
-  def channel_name(self):
+  def channel_name(self) -> str:
+    """
+    Returns:
+      str: The name of the channel the message was sent in.
+    """
     return self.data["rn"]
   
   @property
-  def channel_color(self):
+  def channel_color(self) -> str:
+    """
+    Returns:
+      str: The username's color of the channel the message was sent in.
+    """
     return self.data["rc"]
   
   @property
-  def message_timestamp(self):
-    return self.data["a"]
+  def message_timestamp(self) -> int:
+    """
+    Returns:
+      int: The Unix timestamp in milliseconds of the message.
+    """
+    return int(self.data["a"])
   
   @property
-  def message_id(self):
+  def message_id(self) -> str:
+    """
+    Returns:
+      str: The ID of the message.
+    """
     return self.data["id"]
   
   @property
-  def message(self):
+  def message(self) -> str:
+    """
+    Returns:
+      str: The contents of the message.
+    """
     return self.data["m"]
   
   @property
-  def user_id(self):
+  def user_id(self) -> str:
+    """
+    Returns:
+      str: The ID of the user who sent the message.
+    """
     return self.data["u"]
   
   @property
-  def user_name(self):
+  def user_name(self) -> str:
+    """
+    Returns:
+      str: The username of the user who sent the message.
+    """
     return self.data["n"]
   
   @property
-  def user_color(self):
+  def user_color(self) -> str:
+    """
+    Returns:
+      str: The username's color of the user who sent the message.
+    """
     return self.data["k"]
   
   @property
-  def user_profile_pic(self):
+  def user_profile_pic(self) -> str:
+    """
+    Returns:
+      str: The URL of the user's profile picture.
+    """
     return self.data["i"]
