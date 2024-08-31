@@ -7,7 +7,7 @@ logger.setLevel(logging.INFO)
 
 class PicaBot:
   """
-  A bot library for connecting and interacting with Picarto.tv chat servers.
+  A bot library for connecting and interacting with Picarto.tv chat websocket.
   """
   def __init__(
     self, 
