@@ -23,7 +23,7 @@ Here is a basic example of how to use PicaBot to create a bot:
 
 ```python
 import asyncio
-from picabot import PicaBot
+from picabot import PicaBot, PicaMessage
 
 bot = PicaBot.from_password(
   "BOT_ACCOUNT_USERNAME",
@@ -32,12 +32,12 @@ bot = PicaBot.from_password(
 )
 
 @bot.command("hello")
-async def hello_command(user, *args):
-    await bot.sent_message(f"Hello, {user}!")
+async def hello_command(message: PicaMessage, *args):
+    await bot.sent_message(f"Hello, {message.user_name}!")
 
 @bot.on("message")
-async def on_message(user, message):
-    print(f"Received message from {user}: {message}")
+async def on_message(message: PicaMessage):
+  print(f"{message.user_name}: {message.message}")
 
 asyncio.run_until_complete(bot.connect())
 ```
