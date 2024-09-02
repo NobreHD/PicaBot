@@ -186,17 +186,17 @@ class PicaBot:
     if self.ws is not None:
       await self.ws.close()
       
-  async def emit(self, event: str, *args, **kwargs):
+  async def emit(self, event_name: str, *args, **kwargs):
     """
     Emits a custom event, triggering all listeners registered for that event.
 
     Parameters:
-      event (str): The name of the event.
+      event_name (str): The name of the event.
       args: Positional arguments to pass to the event listeners.
       kwargs: Keyword arguments to pass to the event listeners.
     """
-    if event in self._listeners:
-      tasks = [listener(*args, **kwargs) for listener in self._listeners[event]]
+    if event_name in self._listeners:
+      tasks = [listener(*args, **kwargs) for listener in self._listeners[event_name]]
       await asyncio.gather(*tasks)
   
   def event(self, event_name: str):
@@ -207,7 +207,7 @@ class PicaBot:
       event_name (str): The name of the event to listen for.
     """
     def decorator(func):
-      if event not in self._listeners:
+      if event_name not in self._listeners:
         self._listeners[event_name] = []
       self._listeners[event_name].append(func)
       return func
