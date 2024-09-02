@@ -147,7 +147,7 @@ class PicaBot:
       raise ConnectionError("Not connected")
     await self.ws.send(json.dumps(message))
   
-  async def sent_message(self, message: str):
+  async def send_message(self, message: str):
     """
     Sends a chat message.
 
@@ -199,17 +199,17 @@ class PicaBot:
       tasks = [listener(*args, **kwargs) for listener in self._listeners[event]]
       await asyncio.gather(*tasks)
   
-  def on(self, event: str):
+  def event(self, event_name: str):
     """
     Registers a listener for a specific event.
 
     Parameters:
-      event (str): The name of the event to listen for.
+      event_name (str): The name of the event to listen for.
     """
     def decorator(func):
       if event not in self._listeners:
-        self._listeners[event] = []
-      self._listeners[event].append(func)
+        self._listeners[event_name] = []
+      self._listeners[event_name].append(func)
       return func
     return decorator
   
