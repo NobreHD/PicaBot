@@ -33,7 +33,7 @@ bot = PicaBot.from_password(
 
 @bot.command("hello")
 async def hello_command(message: PicaMessage, *args):
-    await bot.sent_message(f"Hello, {message.user_name}!")
+    await bot.send_message(f"Hello, {message.user_name}!")
 
 @bot.on("message")
 async def on_message(message: PicaMessage):
