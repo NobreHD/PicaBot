@@ -1,3 +1,3 @@
-from .picabot import PicaBot
+from .picabot import PicaBot, PicaMessage
 
-__all__ = ["PicaBot"]
+__all__ = ["PicaBot", "PicaMessage"]
