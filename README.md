@@ -39,7 +39,7 @@ async def hello_command(message: PicaMessage, *args):
 async def on_message(message: PicaMessage):
   print(f"{message.user_name}: {message.message}")
 
-asyncio.run_until_complete(bot.connect())
+asyncio.run(bot.connect())
 ```
 
 ## Contributing
